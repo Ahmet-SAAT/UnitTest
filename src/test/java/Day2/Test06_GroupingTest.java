@@ -26,11 +26,23 @@ public class Test06_GroupingTest {
         void testMultiplyWithZero(int rs,int x,int y){
             assertEquals(rs,Math.multiplyExact(x,y));
         }
-
-
-
-
     }
 
+      @Nested
+    class AddTest{
 
+       @ParameterizedTest
+       @CsvSource(value = {"-1,-4,3","1,4,-3","-7,-4,-3"})
+          void testAddWithNonZero(int rs,int x,int y){
+         assertEquals(rs,Math.addExact(x,y));
+       }
+
+          @ParameterizedTest
+          @CsvSource(value = {"3,0,3","4,4,0","12,0,12"})
+          void testAddWitZero(int rs,int x,int y){
+              assertEquals(rs,Math.addExact(x,y));
+          }
+
+
+      }
 }
