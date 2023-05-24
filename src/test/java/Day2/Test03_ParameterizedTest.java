@@ -9,55 +9,58 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class Test03_ParameterizedTest {
+
     @Test
-    void testLength() {
-        assertTrue("Mirac".length() > 0);
-        assertTrue("Ebubekir".length() > 0);
-        assertTrue("Bilal".length() > 0);
-        assertTrue("Ahmet".length() > 0);
+    void testLength(){
+
+        assertTrue("Mirac".length()>0);
+        assertTrue("Ebubekir".length()>0);
+        assertTrue("Bilal".length()>0);
+        assertTrue("Ahmet".length()>0);
     }
 
-    //yukaridaki metotda 4 defa assertTrue yazdik ama bunu daha clean sekilde yapmak icin
+    // !!! yukardaki metodda 4 defa assertTrue yazdik ama bunu doha clean sekilde yapmak icin :
     @ParameterizedTest
-    @ValueSource(strings = {"Mirac", "Ebubekir", "Bilal", "Ahmet"})
-//parametreleri burada belirttim
-    void testLength2(String str) {
+    @ValueSource(strings = {"Mirac","Bilal","Ebubekir","Ahmet"})
+    void testLength2(String str){
+
         assertTrue(str.length() > 0);
+
     }
+
+    // !!! 2.ornek :
 
     @Test
     void testUpperCase(){
-        String str1="Merhaba";
-        String str2="Java";
-        String str3="Test";
-        assertEquals("MERHABA",str1.toUpperCase());
-        assertEquals("JAVA",str2.toUpperCase());
-        assertEquals("TEST",str3.toUpperCase());
+        String str1 = "Merhaba" ;
+        String str2 = "Java" ;
+        String str3 = "Test" ;
+
+        assertEquals("MERHABA", str1.toUpperCase());
+        assertEquals("JAVA", str2.toUpperCase());
+        assertEquals("TEST", str3.toUpperCase());
     }
 
-//yukaridakinni parametreli yazilm
+    // !!! yukardak iornegi parametreli olarak yazalim :
     @ParameterizedTest
-    @CsvSource(value = {
-            "MERHABA,merhaba",
-            "JAVA,java",
-            "TEST,test"
+    @CsvSource( value = {
+           "MERHABA, merhaba",
+           "JAVA, java",
+           "TEST, test"
     })
-void testUpperCase2(String str1,String str2){
-        assertEquals(str1,str2.toUpperCase());
+    void testUppercase2(String str1 , String str2){
+
+        assertEquals(str1, str2.toUpperCase());
+
     }
 
+    // !!! 3.ornek :
     @ParameterizedTest
-    @CsvSource(value = {"true,java,a","true,junit,u","false,hello,a"})
-    void TestContains(boolean b1,String str1,String str2){
-        assertEquals(b1,str1.contains(str2));
+    @CsvSource(value = {"true,java,a", "true,junit,u", "false, hello,a"})
+    void testContains(boolean b1, String str1, String str2){
+
+        assertEquals(b1, str1.contains(str2));
+
     }
-
-
-
-
-
-
-
-
 
 }

@@ -12,42 +12,46 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class Test03_BeforeEach_AfterEach {
 
-    String str;
+    String str ;
 
-    @BeforeEach//her method test edilmeden once calisir
+    @BeforeEach
     void beforeEach(){
 
-        str="JUnit5 is better than JUnit4";
-        System.out.println("******* beforeEach() calisti *********");
+        str = "JUnit5 is better than JUnit4";
+        System.out.println("********** BeforeEach() calisti *************");
+
     }
 
-   @AfterEach//her method test edildikten sonra calisir
-   void afterEach(){
+    @AfterEach
+    void afterEach(){
+        str = null;
+        System.out.println("********** AfterEach() calisti **************");
+    }
 
-       str=null;
-       System.out.println("******* afterEach() calisti *********");
-   }
+
+
 
     @Test
-    void testSplit(TestInfo info){
-        String [] anlikDizi=str.split(" ");
-        String [] beklenenDizi={"JUnit5","is","better","than","JUnit4"};
-        System.out.println(info.getDisplayName()+" calisti");
+    void testSplit(TestInfo info){ // calisan testin ismini console da gormek icin TestInfo kullanildi
+
+        String[] anlikDizi = str.split(" ");
+        String[] beklenenDizi = {"JUnit5", "is", "better","than","JUnit4"};
+        System.out.println(info.getDisplayName() + " calisti");
+
         assertTrue(Arrays.equals(beklenenDizi,anlikDizi));
+
+    }
+
+    @Test
+    void testStringLength(){
+
+        int anlikDeger = str.length();
+        int beklenenDeger = 28;
+
+        assertEquals(beklenenDeger,anlikDeger);
     }
 
 
-   @Test
-    void testStringLength(TestInfo info){
-        int anlikDeger=str.length();
-        int beklenenDeger=28;
-       assertEquals(anlikDeger,beklenenDeger);
-       System.out.println(info.getDisplayName()+" calisti");
-   }
-//defaulta class levelden calistirirsak methodlar random calisir
-//test methodlarinn calisma sirasini kendimiz belirlemek istyorsak JUnit4-->@FixMethodOrder
-
-
-
-
+    // !!! test methodlarinin calisma sirasini kendimiz belirlemek istiyorsak JUnit4 --> @FixMethodOrder
+            // JUnit5 --> @TestMethodOrder
 }

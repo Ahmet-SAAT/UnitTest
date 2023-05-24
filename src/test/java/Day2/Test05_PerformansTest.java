@@ -8,18 +8,25 @@ import java.util.stream.IntStream;
 import static org.junit.jupiter.api.Assertions.assertTimeout;
 
 public class Test05_PerformansTest {
-    //bunu nerede kullanabiliriz.Task olarak verilen sorunun cozumu icin yazilan kodun
-    // maksimim 2 saniye icinde ekrana sonucu vermesini istiyorsam:
+
+    // !!! Bunu nerede kullanabiliriz ??? Task olarak verilen sorunun cozumu icin
+        // yazilan kodun maksimum 2 saniye icinde ekrana sonucu vermesini sitiyorsam :
+
     @Test
     void testPrintPerformans(){
-        assertTimeout(Duration.ofSeconds(2),()-> IntStream.rangeClosed(1,100000)).forEach(System.out::println);
+
+        assertTimeout(Duration.ofSeconds(1),
+                () -> IntStream.rangeClosed(1,500000).forEach(System.out::println));
     }
+
+
 
     @Test
     void testPerformans(){
-        assertTimeout(Duration.ofSeconds(1),()-> IntStream.rangeClosed(1,50000).reduce((x,y)->Math.addExact(x,y)));
-    }
 
+        assertTimeout(Duration.ofSeconds(1),
+                () -> IntStream.rangeClosed(1,50000).reduce((x,y)->Math.addExact(x,y)));
+    }
 
 
 }
